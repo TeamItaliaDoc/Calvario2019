@@ -1,5 +1,6 @@
 ﻿var calcolaClassificaRun = false;
- 
+
+
 var matchs = [];
 matchs[1] = {"stazione":1, "url":"https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-1/1/1", "daCaricare":true};
 
