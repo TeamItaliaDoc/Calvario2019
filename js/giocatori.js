@@ -5,6 +5,7 @@
 
 var getEloRun = false;
 var calcolaClassificaGiocatoriRun = false;
+var okU1700 = false;
 
 var giocatori = [];
 
@@ -87,7 +88,9 @@ function getEloUrl(url)
             calcolaClassificaGiocatoriRun = true;
 
         //Calcolo clasifica
-        calcolaClassificaGiocatori();
+        //Calcolo e stampo prima la classifica del calvario
+        //calcolaClassificaGiocatori();
+        calcolaClassificaCalvario();
 
     }).error(function(jqXhr, textStatus, error) {
         //è andato in errore ricarico i dati
@@ -113,6 +116,8 @@ function creaGiocatore(apiUsername) {
     giocatori[username].patte = 0;
     giocatori[username].userVinte = [];
     giocatori[username].userPatte = [];
+    //Campi specifici del torne
+    giocatori[username].calvario = [];
 }
 
 function setPunti(username, risultato, avversario)
@@ -200,9 +205,14 @@ function calcolaClassificaGiocatori()
  
 function stampaGiocatore(username)
 {
+    var stampaU1700 = '';
+    if (! okU1700 && giocatori[username].elo < 1700) {
+        stampaU1700 = '<BR> #1 U1700'
+        okU1700 = true;
+    }
     //stampo riga    
     $("#giocatori").append('<tr class="classifica-giocatori">' +
-        '<td class="classifica-col1">' + giocatori[username].posizione + '</td>' +  
+        '<td class="classifica-col1">' + giocatori[username].posizione + stampaU1700 + '</td>' +  
         '<td class="giocatori-col1SEP"></td>' + 
         '<td class="classifica-col2">' +
         '    <table><tr>' +
