@@ -1,13 +1,19 @@
-﻿var calcolaClassificaRun = false;
-
+﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+var calcolaClassificaRun = false;
 
 var matchs = [];
-matchs[11] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true};
-//matchs[12] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":true};
-matchs[12] = {"stazione":1, "girone":2, "nome":"csp-inverno-2018-2019-girone-6", "daCaricare":true};
+matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true};
+matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":true};
+matchs[103] = {"stazione":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-3", "daCaricare":true};
+matchs[104] = {"stazione":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-4", "daCaricare":true};
+matchs[105] = {"stazione":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-5", "daCaricare":true};
+matchs[106] = {"stazione":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo-6", "daCaricare":true};
+matchs[107] = {"stazione":1, "girone":7, "nome":"il-calvario-stazione-n-1-gruppo-7", "daCaricare":true};
+matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo-8", "daCaricare":true};
+matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "daCaricare":true};
 
+matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
 
-matchs[21] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
 //https://api.chess.com/pub/tournament/csp-inverno-2018-2019-girone-1/1/1
 
 function elabora() {
@@ -46,6 +52,7 @@ function caricaMatch(index, url)
                 calvario[stazione].stampa = '';
                 calvario[stazione].url = '';
                 calvario[stazione].vittorie = 0;
+                calvario[stazione].dataVittoria = 0;
                 calvario[stazione].partiteFinite = 0;
                 calvario[stazione].girone = matchs[iMatch].girone;
                 calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome;
@@ -63,8 +70,8 @@ function caricaMatch(index, url)
                 setPunti(data.games[i].black.username.toLowerCase(), data.games[i].black.result, data.games[i].white.username);
 
                 //Punti Calvario
-                setPuntiCalvario(data.games[i].white.username.toLowerCase(), data.games[i].white.result, matchs[iMatch])
-                setPuntiCalvario(data.games[i].black.username.toLowerCase(), data.games[i].black.result, matchs[iMatch])
+                setPuntiCalvario(data.games[i].white.username.toLowerCase(), data.games[i].white.result, matchs[iMatch], data.games[i].end_time)
+                setPuntiCalvario(data.games[i].black.username.toLowerCase(), data.games[i].black.result, matchs[iMatch], data.games[i].end_time)
             }
         }
 
@@ -108,7 +115,7 @@ function caricaMatch(index, url)
 }
 
 //Salva i punti del calvario
-function setPuntiCalvario(username, risultato, match) {
+function setPuntiCalvario(username, risultato, match, dataVittoria) {
 
     var calvario = giocatori[username].calvario;
     var stazione = match.stazione;
@@ -125,6 +132,10 @@ function setPuntiCalvario(username, risultato, match) {
         if (calvario[stazione].girone == girone) {
             calvario[stazione].vittorie ++;
         }
+        //Salvo la data dell'ultima vittoria
+        if (calvario[stazione].dataVittoria < dataVittoria) {
+            calvario[stazione].dataVittoria = dataVittoria;
+        }
     }
     
 }
@@ -133,16 +144,19 @@ function setPuntiCalvario(username, risultato, match) {
 function calcolaClassificaCalvario()
 {
 
-    //????????????
-
     //Aggiorno il campo da stampare per ogni stazione e stampo
     for (var username in giocatori)
     {
         //imposto i valori da stampare
         var calvario = giocatori[username].calvario;
         var ii = 0;
+        var iMeno = 0;
         for (var i in calvario) {
-            //Stazione successiva
+            //Punti per ordinare giocatori
+            if (calvario[i].dataVittoria == 0)    
+               calvario[i].dataVittoria = 9999999999;
+            giocatori[username].puntiCalvario = i * 1000000000000 + calvario[i].vittorie * 1000000000 - calvario[i].dataVittoria;
+            //Stazione successiva e precedente
             ii = parseInt(i) + 1;
             //Default, numero di vittori
             calvario[i].stampa = calvario[i].vittorie;
@@ -152,25 +166,50 @@ function calcolaClassificaCalvario()
                 //Se non mi sono ancora iscritto alla stazione successiva la creo per visualizzare l'attesa
                 if (! calvario[ii]) {
                     calvario[ii] = {};
-                    calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png">';
+                    var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
+                    vittoria_time = new Date(1000*myObj.date_created);
+                    calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
                     calvario[ii].url = '';
                     calvario[ii].vittorie = 0;
                     calvario[ii].partiteFinite = 0;
+                    calvario[ii].dataVittoria = 0;
                     calvario[ii].girone = '';
                     calvario[ii].url = '';
-    
+                    giocatori[username].puntiCalvario = ii * 1000000000000 - calvario[i].dataVittoria;
                 }
             }
             //Se ho non posso raggiungere le tre vittori
             if ((!calvario[i+1]) && (8 - calvario[i].partiteFinite + calvario[i].vittorie < 3 )) {
-                calvario[i].stampa = '<img class="calvario-img" src="img/wait.png">';
+                var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
+                vittoria_time = new Date(1000*myObj.date_created);
+                calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
             }
             //Aggiorno i punti classifica per ordinare la tabella
             calvario[i].puntiClassifica = i * 100 + calvario[i].vittorie;
 
         }
-        stampaCalvario(username);
     }
+    
+    //Imposto posizione e salvo
+    var username = '';
+    var max = 0;
+    while (max > -1)
+    {
+        max = -1;
+        for (var i in giocatori)
+        {
+            if (!giocatori[i].stampaCalvario  && giocatori[i].puntiCalvario > max ) {
+                username = i;
+                max = giocatori[i].puntiCalvario;
+            }
+        }
+        if (max > -1) 
+        {
+            giocatori[username].stampaCalvario = stampaCalvario;
+            //Stampo il giocatore
+            stampaCalvario(username);
+        }
+     }
     
     //Calcolo e stampo la classifica dei giocatori
     calcolaClassificaGiocatori();

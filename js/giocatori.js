@@ -118,6 +118,8 @@ function creaGiocatore(apiUsername) {
     giocatori[username].userPatte = [];
     //Campi specifici del torne
     giocatori[username].calvario = [];
+    giocatori[username].puntiCalvario = 0;
+    giocatori[username].stampaCalvario = false;
 }
 
 function setPunti(username, risultato, avversario)
