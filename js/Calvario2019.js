@@ -3,7 +3,7 @@ var calcolaClassificaRun = false;
 var stazioneAttese = [];
 var matchs = [];
 matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true};
-matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":true};
+//matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":true};
 matchs[103] = {"stazione":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-3", "daCaricare":true};
 matchs[104] = {"stazione":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-4", "daCaricare":true};
 matchs[105] = {"stazione":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-5", "daCaricare":true};
@@ -14,7 +14,7 @@ matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo
 
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
 
-//https://api.chess.com/pub/tournament/csp-inverno-2018-2019-girone-1/1/1
+//https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
 function elabora() {
     //Carico i dati di tutti i match
