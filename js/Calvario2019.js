@@ -173,7 +173,8 @@ var iMeno = 1
                     calvario[ii] = {};
                     var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
                     vittoria_time = new Date(1000*myObj.date_created);
-                    calvario[ii].stampa = 'XXXXX'; 
+                    //Se si vuole rimettere progressivo calvario[ii].stampa = 'XXXXX'; 
+                    calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png">';
                     calvario[ii].url = '';
                     calvario[ii].vittorie = 0;
                     calvario[ii].partiteFinite = 0;
@@ -234,6 +235,8 @@ function stampaCalvario(username)
     //preparo riga con punteggio
     for (var i=1; i < 13; i++) {
         if (calvario[i]) {
+            //Se si vuole rimettere progressivo 
+            /*
             //Se sono in attesa perchè ho superato il turno aggiorno con il progressivo
             // INDEX OF NON FUNZIONA
             if ( calvario[i].stampa == 'XXXXX') {
@@ -241,8 +244,9 @@ function stampaCalvario(username)
                 stazioneAttese[i]++;
                 calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' + stazioneAttese[i] + ')</span>';
             }
+            */
             if (calvario[i].url != '') 
-                riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '<span style="font-size: 10px;"><br>(Girone: ' + calvario[i].girone + ')</span></a></td>'
+                riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '<span style="font-size: 10px;"><br>(Gruppo: ' + calvario[i].girone + ')</span></a></td>'
             else                
                 riga += '<td class="classifica-calvario2">' +  calvario[i].stampa + '</td>'
         }  else {
