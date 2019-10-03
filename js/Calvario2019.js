@@ -1,6 +1,6 @@
 ﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
 var calcolaClassificaRun = false;
-
+var stazioneAttese = [];
 var matchs = [];
 matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true};
 matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":true};
@@ -161,14 +161,19 @@ function calcolaClassificaCalvario()
             //Default, numero di vittori
             calvario[i].stampa = calvario[i].vittorie;
             //Se ho superato il turno
-            if (calvario[ii] || calvario[i].vittorie > 2) {
+            if (calvario[i].vittorie > 2) {
                 calvario[i].stampa = '<img class="calvario-img" src="img/check.png">';
+//??????? da ripristinare            
+var iMeno = 1
+            if (i > 1) parseInt(i) - 1;
+            if (calvario[iMeno].vittorie > 2) 
+//??????? da ripristinare            
                 //Se non mi sono ancora iscritto alla stazione successiva la creo per visualizzare l'attesa
                 if (! calvario[ii]) {
                     calvario[ii] = {};
                     var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
                     vittoria_time = new Date(1000*myObj.date_created);
-                    calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
+                    calvario[ii].stampa = 'XXXXX'; 
                     calvario[ii].url = '';
                     calvario[ii].vittorie = 0;
                     calvario[ii].partiteFinite = 0;
@@ -180,9 +185,10 @@ function calcolaClassificaCalvario()
             }
             //Se ho non posso raggiungere le tre vittori
             if ((!calvario[i+1]) && (8 - calvario[i].partiteFinite + calvario[i].vittorie < 3 )) {
-                var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
-                vittoria_time = new Date(1000*myObj.date_created);
-                calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
+                //var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
+                //vittoria_time = new Date(1000*myObj.date_created);
+                //calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
+                calvario[i].stampa = '<img class="calvario-img" src="img/wait.png">'; 
             }
             //Aggiorno i punti classifica per ordinare la tabella
             calvario[i].puntiClassifica = i * 100 + calvario[i].vittorie;
@@ -227,13 +233,22 @@ function stampaCalvario(username)
 //che data bisogna congelare classifica?
     //preparo riga con punteggio
     for (var i=1; i < 13; i++) {
-        if (calvario[i])
-            if (calvario[i].url != '')
+        if (calvario[i]) {
+            //Se sono in attesa perchè ho superato il turno aggiorno con il progressivo
+            // INDEX OF NON FUNZIONA
+            if ( calvario[i].stampa == 'XXXXX') {
+                if (! stazioneAttese[i]) {stazioneAttese[i] = 0;}
+                stazioneAttese[i]++;
+                calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' + stazioneAttese[i] + ')</span>';
+            }
+            if (calvario[i].url != '') 
                 riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '<span style="font-size: 10px;"><br>(Girone: ' + calvario[i].girone + ')</span></a></td>'
             else                
                 riga += '<td class="classifica-calvario2">' +  calvario[i].stampa + '</td>'
-            else
+        }  else {
+            //Stazione non presente
             riga += '<td class="classifica-calvario2"> </td>';
+        }    
     }
     $("#calvario").append('<tr class="classifica-giocatori">' +
         '<td class="classifica-calvario1">' +
