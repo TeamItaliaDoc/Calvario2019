@@ -3,7 +3,7 @@ var calcolaClassificaRun = false;
 var stazioneAttese = [];
 var matchs = [];
 matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true};
-//matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":true};
+matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":false};
 matchs[103] = {"stazione":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-3", "daCaricare":true};
 matchs[104] = {"stazione":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-4", "daCaricare":true};
 matchs[105] = {"stazione":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-5", "daCaricare":true};
@@ -17,11 +17,53 @@ matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
 function elabora() {
+    //-------------------   GIRONI CON BANNATI
+
+    var username = '';
+    var giocatore;
+    var iMatch = 0;
+    var stazione = 0;
+    //-- GIRONE 1 - 2
+    iMatch = 102;
+    stazione = 1;
+    
+    username = 'saurosol'; creaGiocatore(username);
+    giocatore = giocatori[username];
+    giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
+    creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 0;
+    //
+    giocatore.userVinte = ['ytoong','sandro2116','sandro2116']; giocatore.userPatte = [];
+    username = 'ytoong'; creaGiocatore(username);
+    giocatore = giocatori[username];
+    giocatore.punti = 3; giocatore.vinte = 3; giocatore.perse = 1; giocatore.patte = 0;
+    giocatore.userVinte = ['sandro2116']; giocatore.userPatte = [];
+    creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 0;
+    //
+    username = 'sandro2116'; creaGiocatore(username);
+    giocatore = giocatori[username];
+    giocatore.punti = 2; giocatore.vinte = 1; giocatore.perse = 3; giocatore.patte = 0;
+    giocatore.userVinte = []; giocatore.userPatte = [];
+    creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 0;
+    //
+    username = 'woodpusher1956'; creaGiocatore(username);
+    giocatore = giocatori[username];
+    giocatore.punti = 2; giocatore.vinte = 0; giocatore.perse = 0; giocatore.patte = 0;
+    giocatore.userVinte = []; giocatore.userPatte = [];
+    creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 0;
+
+
+
     //Carico i dati di tutti i match
     var url = '';
     for (var i in matchs) {
-        url = 'https://api.chess.com/pub/tournament/' + matchs[i].nome + '/1/1';
-        caricaMatch(i, url);
+        if (matchs[i].daCaricare) {
+            url = 'https://api.chess.com/pub/tournament/' + matchs[i].nome + '/1/1';
+            caricaMatch(i, url);
+        }
     };
 }
 
@@ -48,15 +90,7 @@ function caricaMatch(index, url)
             var calvario = giocatori[data.players[iPlayer].username].calvario;
             var stazione = matchs[iMatch].stazione;
             if (! calvario[stazione]) {
-                calvario[stazione] = {};
-                calvario[stazione].stampa = '';
-                calvario[stazione].url = '';
-                calvario[stazione].vittorie = 0;
-                calvario[stazione].dataVittoria = 0;
-                calvario[stazione].partiteFinite = 0;
-                calvario[stazione].girone = matchs[iMatch].girone;
-                calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome;
-                calvario[stazione].puntiClassifica = 0;
+                creaStazione(calvario, stazione, iMatch);
             } 
         }
 
@@ -175,7 +209,6 @@ var iMeno = 1
                     vittoria_time = new Date(1000*myObj.date_created);
                     //Se si vuole rimettere progressivo calvario[ii].stampa = 'XXXXX'; 
                     calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png">';
-                    calvario[ii].url = '';
                     calvario[ii].vittorie = 0;
                     calvario[ii].partiteFinite = 0;
                     calvario[ii].dataVittoria = 0;
@@ -191,9 +224,6 @@ var iMeno = 1
                 //calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
                 calvario[i].stampa = '<img class="calvario-img" src="img/wait.png">'; 
             }
-            //Aggiorno i punti classifica per ordinare la tabella
-            calvario[i].puntiClassifica = i * 100 + calvario[i].vittorie;
-
         }
     }
     
@@ -270,4 +300,16 @@ function stampaCalvario(username)
         riga +
         '</tr>'
     );
+}
+
+//Crea la stazione
+function creaStazione(calvario, stazione, iMatch) {
+    calvario[stazione] = {};
+    calvario[stazione].stampa = '';
+    calvario[stazione].vittorie = 0;
+    calvario[stazione].dataVittoria = 0;
+    calvario[stazione].partiteFinite = 0;
+    calvario[stazione].girone = matchs[iMatch].girone;
+    calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome;
+    calvario[stazione].puntiClassifica = 0;
 }
