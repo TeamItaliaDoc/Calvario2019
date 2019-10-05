@@ -13,6 +13,7 @@ matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo
 matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "daCaricare":true};
 
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
+matchs[202] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-2", "daCaricare":true};
 
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
@@ -31,6 +32,7 @@ function elabora() {
     giocatore = giocatori[username];
     giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
     creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].dataVittoria = 6000000000;
     giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 0;
     //
     giocatore.userVinte = ['ytoong','sandro2116','sandro2116']; giocatore.userPatte = [];
@@ -39,6 +41,7 @@ function elabora() {
     giocatore.punti = 3; giocatore.vinte = 3; giocatore.perse = 1; giocatore.patte = 0;
     giocatore.userVinte = ['sandro2116']; giocatore.userPatte = [];
     creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].dataVittoria = 6000000000;
     giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 0;
     //
     username = 'sandro2116'; creaGiocatore(username);
@@ -46,6 +49,7 @@ function elabora() {
     giocatore.punti = 2; giocatore.vinte = 1; giocatore.perse = 3; giocatore.patte = 0;
     giocatore.userVinte = []; giocatore.userPatte = [];
     creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].dataVittoria = -1;
     giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 0;
     //
     username = 'woodpusher1956'; creaGiocatore(username);
@@ -53,6 +57,7 @@ function elabora() {
     giocatore.punti = 2; giocatore.vinte = 0; giocatore.perse = 0; giocatore.patte = 0;
     giocatore.userVinte = []; giocatore.userPatte = [];
     creaStazione(giocatore.calvario, stazione, iMatch); 
+    giocatore.calvario[stazione].dataVittoria = -1;
     giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 0;
 
 
@@ -129,20 +134,22 @@ function caricaMatch(index, url)
     }).error(function(jqXhr, textStatus, error) {
         //è andato in errore ricarico i dati
         //Se responseJSON non è valorizzato solo se il record esiste    
+        var index = 0;
+        for (var i in matchs) {
+            if (matchs[i].url = this.url)
+                index = i;
+        };
         if (! jqXhr.responseJSON)
         {
             console.log('ERRORE ricarico dati: ' + this.url);
-            var index = 0;
-                for (var i in matchs) {
-                    if (matchs[i].url = this.url)
-                        index = i;
-                };
                 caricaMatch(index, this.url);    
             } else {
-                console.log('ERRORE Match non valida. ' + this.url);
-                console.log('ERRORE Match non valida. ' + this.url);
-                console.log('ERRORE Match non valida. ' + this.url);
-                console.log('ERRORE Match non valida. ' + this.url);
+                console.log('ERRORE Match non valido. ' + this.url);
+                console.log('ERRORE Match non valido. ' + this.url);
+                console.log('ERRORE Match non valido. ' + this.url);
+                console.log('ERRORE Match non valido. ' + this.url);
+                //non lo devo più caricare
+                matchs[index].daCaricare = false;
             }
               
         });
@@ -197,16 +204,10 @@ function calcolaClassificaCalvario()
             //Se ho superato il turno
             if (calvario[i].vittorie > 2) {
                 calvario[i].stampa = '<img class="calvario-img" src="img/check.png">';
-//??????? da ripristinare            
-var iMeno = 1
-            if (i > 1) parseInt(i) - 1;
-            if (calvario[iMeno].vittorie > 2) 
-//??????? da ripristinare            
                 //Se non mi sono ancora iscritto alla stazione successiva la creo per visualizzare l'attesa
                 if (! calvario[ii]) {
                     calvario[ii] = {};
-                    var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataVittoria + '"}'),
-                    vittoria_time = new Date(1000*myObj.date_created);
+                 
                     //Se si vuole rimettere progressivo calvario[ii].stampa = 'XXXXX'; 
                     calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png">';
                     calvario[ii].vittorie = 0;
@@ -214,7 +215,7 @@ var iMeno = 1
                     calvario[ii].dataVittoria = 0;
                     calvario[ii].girone = '';
                     calvario[ii].url = '';
-                    giocatori[username].puntiCalvario = ii * 1000000000000 - calvario[i].dataVittoria;
+                    giocatori[username].puntiCalvario = ii * 1000000000000 + 9 * 1000000000 - calvario[i].dataVittoria;
                 }
             }
             //Se ho non posso raggiungere le tre vittori
@@ -223,6 +224,8 @@ var iMeno = 1
                 //vittoria_time = new Date(1000*myObj.date_created);
                 //calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
                 calvario[i].stampa = '<img class="calvario-img" src="img/wait.png">'; 
+                //imposto punteggio per visualizzarlo come prima di quelli che non hanno superato il turno
+                giocatori[username].puntiCalvario = i * 1000000000000 + 9 * 1000000000;                
             }
         }
     }
