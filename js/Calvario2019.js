@@ -50,7 +50,7 @@ function elabora() {
     giocatore.userVinte = ['sandro2116','ytoong']; giocatore.userPatte = [];
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataVittoria = 6000000000;
-    giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 0;
     //
     username = 'sandro2116'; creaGiocatore(username);
     giocatore = giocatori[username];
