@@ -13,7 +13,7 @@ matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo
 matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "daCaricare":true};
 
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
-//matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2", "daCaricare":true};
+matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "daCaricare":true};
 
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
@@ -165,7 +165,7 @@ function setPuntiCalvario(username, risultato, match, dataVittoria) {
     if (calvario[stazione].girone < girone) {
         calvario[stazione].vittorie = 0;
         calvario[stazione].girone = girone;
-        calvario[stazione].url = 'https://www.chess.com/tournament/' + match.nome;
+        calvario[stazione].url = 'https://www.chess.com/tournament/' + match.nome + '/pairings';
     } 
     calvario[stazione].partiteFinite ++;
     if (risultato == 'win') {
@@ -313,6 +313,6 @@ function creaStazione(calvario, stazione, iMatch) {
     calvario[stazione].dataVittoria = 0;
     calvario[stazione].partiteFinite = 0;
     calvario[stazione].girone = matchs[iMatch].girone;
-    calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome;
+    calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome + '/pairings';;
     calvario[stazione].puntiClassifica = 0;
 }
