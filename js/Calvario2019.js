@@ -18,6 +18,10 @@ matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
 function elabora() {
+    //Calcolo data
+    var d = new Date('11/10/2019');
+    console.log(d.getTime());
+
     //-------------------   GIRONI CON BANNATI
 
     var username = '';
@@ -30,35 +34,39 @@ function elabora() {
     
     username = 'saurosol'; creaGiocatore(username);
     giocatore = giocatori[username];
-    giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
+    giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 1; giocatore.patte = 0;
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataVittoria = 6000000000;
-    giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 0;
-    //
+//    giocatore.calvario[stazione].dataVittoria = new Date('09/10/2019').getTime();
+giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 0;
     giocatore.userVinte = ['ytoong','sandro2116','sandro2116']; giocatore.userPatte = [];
+    //
     username = 'ytoong'; creaGiocatore(username);
     giocatore = giocatori[username];
-    giocatore.punti = 3; giocatore.vinte = 3; giocatore.perse = 2; giocatore.patte = 0;
-    giocatore.userVinte = ['sandro2116']; giocatore.userPatte = [];
+    giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 3; giocatore.patte = 0;
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataVittoria = 6000000000;
-    giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 0;
+//    giocatore.calvario[stazione].dataVittoria = new Date('09/09/2019').getTime();
+    giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.userVinte = ['saurosol','sandro2116']; giocatore.userPatte = [];
     //
     username = 'woodpusher1956'; creaGiocatore(username);
     giocatore = giocatori[username];
     giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 0; giocatore.patte = 0;
-    giocatore.userVinte = ['sandro2116','ytoong']; giocatore.userPatte = [];
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataVittoria = 6000000000;
+//    giocatore.calvario[stazione].dataVittoria = new Date('09/19/2019').getTime();
     giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.userVinte = ['sandro2116','ytoong']; giocatore.userPatte = [];
     //
     username = 'sandro2116'; creaGiocatore(username);
     giocatore = giocatori[username];
-    giocatore.punti = 2; giocatore.vinte = 1; giocatore.perse = 4; giocatore.patte = 0;
-    giocatore.userVinte = []; giocatore.userPatte = [];
+    giocatore.punti = 3; giocatore.vinte = 3; giocatore.perse = 4; giocatore.patte = 0;
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataVittoria = 6000000000;
-    giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 0;
+//    giocatore.calvario[stazione].dataVittoria = new Date('09/03/2019').getTime();
+    giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.userVinte = ['ytoong']; giocatore.userPatte = [];
 
 
 
