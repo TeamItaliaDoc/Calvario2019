@@ -11,17 +11,17 @@ matchs[106] = {"stazione":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo
 matchs[107] = {"stazione":1, "girone":7, "nome":"il-calvario-stazione-n-1-gruppo-7", "daCaricare":true};
 matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo-8", "daCaricare":true};
 matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "daCaricare":true};
+matchs[110] = {"stazione":1, "girone":10, "nome":"il-calvario-stazione-n-1-gruppo-10", "daCaricare":true};
 
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
 matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "daCaricare":true};
+matchs[203] = {"stazione":2, "girone":3, "nome":"il-calvario-stazione-n-2-gruppo-3", "daCaricare":true};
+
+matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "daCaricare":true};
 
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
 function elabora() {
-    //Calcolo data
-    var d = new Date('11/10/2019');
-    console.log(d.getTime());
-
     //-------------------   GIRONI CON BANNATI
 
     var username = '';
@@ -71,11 +71,10 @@ giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteF
 
 
     //Carico i dati di tutti i match
-    var url = '';
     for (var i in matchs) {
         if (matchs[i].daCaricare) {
-            url = 'https://api.chess.com/pub/tournament/' + matchs[i].nome + '/1/1';
-            caricaMatch(i, url);
+            matchs[i].url = 'https://api.chess.com/pub/tournament/' + matchs[i].nome + '/1/1';
+            caricaMatch(i, matchs[i].url);
         }
     };
 }
@@ -88,7 +87,7 @@ function caricaMatch(index, url)
         //Cerco match elaborato
         var iMatch = 0
         for (var i in matchs) {
-            if (this.url.indexOf(matchs[i].nome) > 0)
+            if (this.url.indexOf(matchs[i].nome) > 0) 
             iMatch = i;
         }        
 
@@ -104,7 +103,13 @@ function caricaMatch(index, url)
             var stazione = matchs[iMatch].stazione;
             if (! calvario[stazione]) {
                 creaStazione(calvario, stazione, iMatch);
-            } 
+            } else {
+                //Se è un nuovo girono azzero il punteggio
+                if (calvario[stazione].girone < matchs[iMatch].girone) {
+                   calvario.splice(stazione,1);
+                   creaStazione(calvario, stazione, iMatch);
+                } 
+            }
         }
 
         //Carico i risultati delle partite
@@ -144,7 +149,7 @@ function caricaMatch(index, url)
         //Se responseJSON non è valorizzato solo se il record esiste    
         var index = 0;
         for (var i in matchs) {
-            if (matchs[i].url = this.url)
+            if (matchs[i].url == this.url)
                 index = i;
         };
         if (! jqXhr.responseJSON)
@@ -158,6 +163,18 @@ function caricaMatch(index, url)
                 console.log('ERRORE Match non valido. ' + this.url);
                 //non lo devo più caricare
                 matchs[index].daCaricare = false;
+                //Se ho caricato tutti i dati calcolo la classifica
+                for (var i in matchs) {
+                    if (matchs[i].daCaricare) {
+                        return;
+                    }
+                }
+        
+                //controllo di non aver già lanciato fase sucessiva
+                if (calcolaClassificaRun)
+                    return;  
+                calcolaClassificaRun = true;
+
             }
               
         });
@@ -169,12 +186,10 @@ function setPuntiCalvario(username, risultato, match, dataVittoria) {
     var calvario = giocatori[username].calvario;
     var stazione = match.stazione;
     var girone = match.girone;
-    //Se è un nuovo girono azzero il punteggio
-    if (calvario[stazione].girone < girone) {
-        calvario[stazione].vittorie = 0;
-        calvario[stazione].girone = girone;
-        calvario[stazione].url = 'https://www.chess.com/tournament/' + match.nome + '/pairings';
-    } 
+    //Se è un nuovo più vecchio non faccio niente
+    if (calvario[stazione].girone > girone) {
+        return;
+    }
     calvario[stazione].partiteFinite ++;
     if (risultato == 'win') {
         //assegno punti se è un girone successivo a quello già inserito
@@ -207,7 +222,7 @@ function calcolaClassificaCalvario()
             giocatori[username].puntiCalvario = i * 1000000000000 + calvario[i].vittorie * 1000000000 - calvario[i].dataVittoria;
             //Stazione successiva e precedente
             ii = parseInt(i) + 1;
-            //Default, numero di vittori
+            //Default, numero di vittorie
             calvario[i].stampa = calvario[i].vittorie;
             //Se ho superato il turno
             if (calvario[i].vittorie > 2) {
@@ -286,10 +301,12 @@ function stampaCalvario(username)
                 calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' + stazioneAttese[i] + ')</span>';
             }
             */
-            if (calvario[i].url != '') 
-                riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '<span style="font-size: 10px;"><br>(Gruppo: ' + calvario[i].girone + ')</span></a></td>'
-            else                
+            if (calvario[i].url != '') {
+                riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '<span style="font-size: 10px;"><br>(Gruppo: ' + calvario[i].girone;
+                riga += ')</span></a></td>'
+            } else {
                 riga += '<td class="classifica-calvario2">' +  calvario[i].stampa + '</td>'
+            }
         }  else {
             //Stazione non presente
             riga += '<td class="classifica-calvario2"> </td>';
