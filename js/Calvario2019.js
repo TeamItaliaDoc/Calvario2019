@@ -22,12 +22,12 @@ matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
 
 function elabora() {
-    //-------------------   GIRONI CON BANNATI
+    //------------------   GIRONI CON BANNATI
 
     var username = '';
     var giocatore;
     var iMatch = 0;
-    var stazione = 0;
+    var stazione = 0;   
     //-- GIRONE 1 - 2
     iMatch = 102;
     stazione = 1;
