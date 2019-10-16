@@ -106,10 +106,13 @@ function caricaMatch(index, url)
             } else {
                 //Se è un nuovo girono azzero il punteggio
                 if (calvario[stazione].girone < matchs[iMatch].girone) {
+                   var gironiGiocati = calvario[stazione].gironiGiocati;
                    calvario.splice(stazione,1);
                    creaStazione(calvario, stazione, iMatch);
+                   calvario[stazione].gironiGiocati = gironiGiocati;
                 } 
             }
+            calvario[stazione].gironiGiocati.push(matchs[iMatch].girone);
         }
 
         //Carico i risultati delle partite
@@ -302,8 +305,18 @@ function stampaCalvario(username)
             }
             */
             if (calvario[i].url != '') {
-                riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '<span style="font-size: 10px;"><br>(Gruppo: ' + calvario[i].girone;
-                riga += ')</span></a></td>'
+                riga += '<td class="classifica-calvario2"><a class="username" href="' + calvario[i].url+ '" target=”_blank”> ' +  calvario[i].stampa + '</a><span style="font-size: 10px;"><br>Gruppo: ' + calvario[i].girone;
+                var gironiGiocati = '';
+                calvario[i].gironiGiocati.sort(mySorterNumeric);
+                for (var iGiocati in calvario[i].gironiGiocati) {
+                    if (calvario[i].gironiGiocati[iGiocati] != calvario[i].girone)
+                        gironiGiocati += calvario[i].gironiGiocati[iGiocati] + '</a>,';
+                }
+                if (gironiGiocati != '') {
+                    gironiGiocati = gironiGiocati.substring(0, gironiGiocati.length-1);
+                    riga += ' (' + gironiGiocati + ')';
+                }
+                riga += '</span></td>'
             } else {
                 riga += '<td class="classifica-calvario2">' +  calvario[i].stampa + '</td>'
             }
@@ -338,6 +351,10 @@ function creaStazione(calvario, stazione, iMatch) {
     calvario[stazione].dataVittoria = 0;
     calvario[stazione].partiteFinite = 0;
     calvario[stazione].girone = matchs[iMatch].girone;
-    calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome + '/pairings';;
+    calvario[stazione].url = 'https://www.chess.com/tournament/' + matchs[iMatch].nome + '/pairings';
     calvario[stazione].puntiClassifica = 0;
+    calvario[stazione].gironiGiocati = [];
 }
+
+//Per fare il sort di tipo numerico
+function mySorterNumeric(a, b){ return (a-b); }
