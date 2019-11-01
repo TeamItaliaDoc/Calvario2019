@@ -18,7 +18,7 @@ matchs[111] = {"stazione":1, "girone":11, "nome":"il-calvario-stazione-n-1-grupp
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
 matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "daCaricare":true};
 matchs[203] = {"stazione":2, "girone":3, "nome":"il-calvario-stazione-n-2-gruppo-3", "daCaricare":false};
-matchs[204] = {"stazione":2, "girone":4, "nome":"il-calvario-stazione-n-2-gruppo-4", "daCaricare":false};
+matchs[204] = {"stazione":2, "girone":4, "nome":"il-calvario-stazione-n-2-gruppo-4", "daCaricare":true};
 
 matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "daCaricare":true};
 matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "daCaricare":true};
