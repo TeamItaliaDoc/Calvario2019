@@ -19,11 +19,16 @@ matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo
 matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "daCaricare":true};
 matchs[203] = {"stazione":2, "girone":3, "nome":"il-calvario-stazione-n-2-gruppo-3", "daCaricare":false};
 matchs[204] = {"stazione":2, "girone":4, "nome":"il-calvario-stazione-n-2-gruppo-4", "daCaricare":true};
+matchs[205] = {"stazione":2, "girone":5, "nome":"il-calvario-stazione-n-2-gruppo-5", "daCaricare":true};
+matchs[206] = {"stazione":2, "girone":6, "nome":"il-calvario-stazione-n-2-gruppo-6", "daCaricare":true};
+matchs[207] = {"stazione":2, "girone":7, "nome":"il-calvario-stazione-n-2-gruppo-7", "daCaricare":true};
 
 matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "daCaricare":true};
 matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "daCaricare":true};
 
-//https://api.chess.com/pub/tournament/il-calvario-stazione-n-1-gruppo-2/1/1
+matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "daCaricare":true};
+
+//https://api.chess.com/pub/tournament/il-calvario-stazione-n-2-gruppo-5/1/1
 
 function elabora() {
     //------------------   GIRONI CON BANNATI
