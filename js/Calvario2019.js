@@ -2,31 +2,31 @@
 var calcolaClassificaRun = false;
 var stazioneAttese = [];
 var matchs = [];
-matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true};
-matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "daCaricare":false};
-matchs[103] = {"stazione":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-3", "daCaricare":true};
-matchs[104] = {"stazione":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-4", "daCaricare":true};
-matchs[105] = {"stazione":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-5", "daCaricare":true};
-matchs[106] = {"stazione":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo-6", "daCaricare":true};
-matchs[107] = {"stazione":1, "girone":7, "nome":"il-calvario-stazione-n-1-gruppo-7", "daCaricare":true};
-matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo-8", "daCaricare":true};
-matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "daCaricare":true};
-matchs[110] = {"stazione":1, "girone":10, "nome":"il-calvario-stazione-n-1-gruppo-10", "daCaricare":true};
-matchs[111] = {"stazione":1, "girone":11, "nome":"il-calvario-stazione-n-1-gruppo-11", "daCaricare":true};
+matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
+matchs[102] = {"stazione":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-2", "vittoriePassaggio":3, "daCaricare":false};
+matchs[103] = {"stazione":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-3", "vittoriePassaggio":3, "daCaricare":true};
+matchs[104] = {"stazione":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-4", "vittoriePassaggio":3, "daCaricare":true};
+matchs[105] = {"stazione":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-5", "vittoriePassaggio":3, "daCaricare":true};
+matchs[106] = {"stazione":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo-6", "vittoriePassaggio":3, "daCaricare":true};
+matchs[107] = {"stazione":1, "girone":7, "nome":"il-calvario-stazione-n-1-gruppo-7", "vittoriePassaggio":3, "daCaricare":true};
+matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo-8", "vittoriePassaggio":3, "daCaricare":true};
+matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "vittoriePassaggio":3, "daCaricare":true};
+matchs[110] = {"stazione":1, "girone":10, "nome":"il-calvario-stazione-n-1-gruppo-10", "vittoriePassaggio":3, "daCaricare":true};
+matchs[111] = {"stazione":1, "girone":11, "nome":"il-calvario-stazione-n-1-gruppo-11", "vittoriePassaggio":2, "daCaricare":true};
 
 
-matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "daCaricare":true};
-matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "daCaricare":true};
-matchs[203] = {"stazione":2, "girone":3, "nome":"il-calvario-stazione-n-2-gruppo-3", "daCaricare":false};
-matchs[204] = {"stazione":2, "girone":4, "nome":"il-calvario-stazione-n-2-gruppo-4", "daCaricare":true};
-matchs[205] = {"stazione":2, "girone":5, "nome":"il-calvario-stazione-n-2-gruppo-5", "daCaricare":true};
-matchs[206] = {"stazione":2, "girone":6, "nome":"il-calvario-stazione-n-2-gruppo-6", "daCaricare":true};
-matchs[207] = {"stazione":2, "girone":7, "nome":"il-calvario-stazione-n-2-gruppo-7", "daCaricare":true};
+matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
+matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "vittoriePassaggio":3, "daCaricare":true};
+matchs[203] = {"stazione":2, "girone":3, "nome":"il-calvario-stazione-n-2-gruppo-3", "vittoriePassaggio":3, "daCaricare":false};
+matchs[204] = {"stazione":2, "girone":4, "nome":"il-calvario-stazione-n-2-gruppo-4", "vittoriePassaggio":3, "daCaricare":true};
+matchs[205] = {"stazione":2, "girone":5, "nome":"il-calvario-stazione-n-2-gruppo-5", "vittoriePassaggio":3, "daCaricare":true};
+matchs[206] = {"stazione":2, "girone":6, "nome":"il-calvario-stazione-n-2-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
+matchs[207] = {"stazione":2, "girone":7, "nome":"il-calvario-stazione-n-2-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
 
-matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "daCaricare":true};
-matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "daCaricare":true};
+matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
+matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 
-matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "daCaricare":true};
+matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-2-gruppo-5/1/1
 
@@ -47,6 +47,7 @@ function elabora() {
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataPassaggio = 6000000000;
     giocatore.calvario[stazione].vittorie = 7; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittoriePassaggio = 3;
     giocatore.userVinte = ['ytoong','sandro2116','sandro2116']; giocatore.userPatte = [];
     //
     username = 'ytoong'; creaGiocatore(username);
@@ -55,6 +56,7 @@ function elabora() {
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataPassaggio = 6000000000;
     giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittoriePassaggio = 3;
     giocatore.userVinte = ['saurosol','sandro2116']; giocatore.userPatte = [];
     //
     username = 'sandro2116'; creaGiocatore(username);
@@ -66,6 +68,7 @@ function elabora() {
     giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,6).getTime()/1000);
     giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,11).getTime()/1000);
     giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittoriePassaggio = 3;
     giocatore.userVinte = ['ytoong']; giocatore.userPatte = [];
 
 
@@ -75,32 +78,35 @@ function elabora() {
         
         username = 'albertocollobiano'; creaGiocatore(username);
         giocatore = giocatori[username];
-        giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 0; giocatore.patte = 0;
+        giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
         creaStazione(giocatore.calvario, stazione, iMatch); 
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,17).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
-            giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 0;
-        giocatore.userVinte = ['saurosol','saurosol']; giocatore.userPatte = [];
+        giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 5;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
+        giocatore.userVinte = ['saurosol','saurosol','dairola']; giocatore.userPatte = [];
         //
         username = 'riccardocioli'; creaGiocatore(username);
         giocatore = giocatori[username];
-        giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 0; giocatore.patte = 0;
+        giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
         creaStazione(giocatore.calvario, stazione, iMatch); 
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,20).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
-        giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 0;
-        giocatore.userVinte = ['saurosol','saurosol']; giocatore.userPatte = [];
+        giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 5;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
+        giocatore.userVinte = ['saurosol','saurosol','dairola']; giocatore.userPatte = [];
         //
         username = 'dairola'; creaGiocatore(username);
         giocatore = giocatori[username];
-        giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 0; giocatore.patte = 0;
+        giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 2; giocatore.patte = 0;
         creaStazione(giocatore.calvario, stazione, iMatch); 
+        giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 8;
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,20).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
-        giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 0;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
         giocatore.userVinte = ['saurosol','saurosol']; giocatore.userPatte = [];
         //
         username = 'saurosol';
@@ -110,6 +116,7 @@ function elabora() {
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 14;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
         giocatore.userVinte = []; giocatore.userPatte = [];
     
     
@@ -269,7 +276,7 @@ function calcolaClassificaCalvario()
             //Default, numero di vittorie
             calvario[i].stampa = calvario[i].vittorie;
             //Se ho superato il turno
-            if (calvario[i].vittorie > 2) {
+            if (calvario[i].vittorie >= calvario[i].vittoriePassaggio) {
                 calvario[i].stampa = '<img class="calvario-img" src="img/check.png">';
                 //Se non mi sono ancora iscritto alla stazione successiva la creo per visualizzare l'attesa
                 if (! calvario[ii]) {
@@ -284,6 +291,7 @@ function calcolaClassificaCalvario()
                         calvario[ii].stampa += '<BR><span style="font-size: 10px;">' + giorni[end_time.getDate()-1]  + '/' + giorni[end_time.getMonth()]+ '/'+ end_time.getFullYear() +'</span>';
                     }
                     calvario[ii].vittorie = 0;
+                    calvario[ii].vittoriePassaggio = 0;
                     calvario[ii].partiteFinite = 0;
                     calvario[ii].dataPassaggio = 0;
                     calvario[ii].girone = '';
@@ -292,7 +300,15 @@ function calcolaClassificaCalvario()
                 }
             }
             //Se ho non posso raggiungere le tre vittori
-            if ((!calvario[i+1]) && (8 - calvario[i].partiteFinite + calvario[i].vittorie < 3 )) {
+if (username == 'sandro2116')
+console.log('aaa');
+            var partiteGirone = 0;  //N. partite da giocare nel girone. 
+                                    //Se passo con 3 vittorie il girone è da 5 giocatori, altrimenti da 4
+            if (calvario[i].vittoriePassaggio == 3)
+               partiteGirone = 8
+            else 
+               partiteGirone = 6;
+            if ((!calvario[i+1]) && (partiteGirone - calvario[i].partiteFinite + calvario[i].vittorie < calvario[i].vittoriePassaggio )) {
                 //var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataPassaggio + '"}'),
                 //vittoria_time = new Date(1000*myObj.date_created);
                 //calvario[i].stampa = '<img class="calvario-img" src="img/wait.png"><BR><span style="font-size: 10px;">(' +  giorni[vittoria_time.getDate()-1]  + '/' + giorni[vittoria_time.getMonth()]+ '/'+ vittoria_time.getFullYear() +')</span>'; 
@@ -395,6 +411,7 @@ function creaStazione(calvario, stazione, iMatch) {
     calvario[stazione] = {};
     calvario[stazione].stampa = '';
     calvario[stazione].vittorie = 0;
+    calvario[stazione].vittoriePassaggio = matchs[iMatch].vittoriePassaggio;
     calvario[stazione].dataPassaggio = 9999999999;
     calvario[stazione].dataVittorie = [];
     calvario[stazione].partiteFinite = 0;
