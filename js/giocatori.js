@@ -199,7 +199,9 @@ function calcolaClassificaGiocatori()
             }    
            giocatori[username].posizione = posizione;
            //Stampo il giocatore
-           stampaGiocatore(username);
+           
+           if (eliminati.indexOf(';' + username + ';') == -1)  //Se bannato non lo stampo
+               stampaGiocatore(username);
         }
     }
    

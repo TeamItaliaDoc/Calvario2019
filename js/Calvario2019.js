@@ -1,4 +1,5 @@
 ﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+var eliminati = [";albertocollobiano;"]
 var calcolaClassificaRun = false;
 var stazioneAttese = [];
 var matchs = [];
@@ -10,7 +11,7 @@ matchs[105] = {"stazione":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo
 matchs[106] = {"stazione":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo-6", "vittoriePassaggio":3, "daCaricare":true};
 matchs[107] = {"stazione":1, "girone":7, "nome":"il-calvario-stazione-n-1-gruppo-7", "vittoriePassaggio":3, "daCaricare":true};
 matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo-8", "vittoriePassaggio":3, "daCaricare":true};
-matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "vittoriePassaggio":3, "daCaricare":true};
+matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "vittoriePassaggio":3, "daCaricare":false};
 matchs[110] = {"stazione":1, "girone":10, "nome":"il-calvario-stazione-n-1-gruppo-10", "vittoriePassaggio":3, "daCaricare":true};
 matchs[111] = {"stazione":1, "girone":11, "nome":"il-calvario-stazione-n-1-gruppo-11", "vittoriePassaggio":2, "daCaricare":true};
 
@@ -22,6 +23,7 @@ matchs[204] = {"stazione":2, "girone":4, "nome":"il-calvario-stazione-n-2-gruppo
 matchs[205] = {"stazione":2, "girone":5, "nome":"il-calvario-stazione-n-2-gruppo-5", "vittoriePassaggio":3, "daCaricare":true};
 matchs[206] = {"stazione":2, "girone":6, "nome":"il-calvario-stazione-n-2-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
 matchs[207] = {"stazione":2, "girone":7, "nome":"il-calvario-stazione-n-2-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
+matchs[208] = {"stazione":2, "girone":7, "nome":"il-calvario-stazione-n-2-gruppo-8", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
 matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
@@ -37,7 +39,7 @@ function elabora() {
     var giocatore;
     var iMatch = 0;
     var stazione = 0;   
-    //-- STAZIONE 1 - GIRONE 2
+    //-- STAZIONE 1 - GIRONE 2 - OK
     iMatch = 102;
     stazione = 1;
     
@@ -46,7 +48,7 @@ function elabora() {
     giocatore.punti = 7; giocatore.vinte = 7; giocatore.perse = 1; giocatore.patte = 0;
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataPassaggio = 6000000000;
-    giocatore.calvario[stazione].vittorie = 7; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittorie = 7; giocatore.calvario[stazione].partiteFinite = 8;
     giocatore.calvario[stazione].vittoriePassaggio = 3;
     giocatore.userVinte = ['ytoong','sandro2116','sandro2116']; giocatore.userPatte = [];
     //
@@ -55,7 +57,7 @@ function elabora() {
     giocatore.punti = 6; giocatore.vinte = 6; giocatore.perse = 2; giocatore.patte = 0;
     creaStazione(giocatore.calvario, stazione, iMatch); 
     giocatore.calvario[stazione].dataPassaggio = 6000000000;
-    giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittorie = 6; giocatore.calvario[stazione].partiteFinite = 8;
     giocatore.calvario[stazione].vittoriePassaggio = 3;
     giocatore.userVinte = ['saurosol','sandro2116']; giocatore.userPatte = [];
     //
@@ -67,42 +69,31 @@ function elabora() {
     giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,5).getTime()/1000);
     giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,6).getTime()/1000);
     giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,11).getTime()/1000);
-    giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 0;
+    giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 8;
     giocatore.calvario[stazione].vittoriePassaggio = 3;
     giocatore.userVinte = ['ytoong']; giocatore.userPatte = [];
 
 
-        //-- STAZIONE 2 - GIRONE 3
+        //-- STAZIONE 2 - GIRONE 3 - OK
         iMatch = 203;
         stazione = 2;
         
-        username = 'albertocollobiano'; creaGiocatore(username);
-        giocatore = giocatori[username];
-        giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
-        creaStazione(giocatore.calvario, stazione, iMatch); 
-        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,17).getTime()/1000);
-        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
-        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
-        giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 5;
-        giocatore.calvario[stazione].vittoriePassaggio = 3;
-        giocatore.userVinte = ['saurosol','saurosol','dairola']; giocatore.userPatte = [];
-        //
         username = 'riccardocioli'; creaGiocatore(username);
         giocatore = giocatori[username];
-        giocatore.punti = 5; giocatore.vinte = 5; giocatore.perse = 0; giocatore.patte = 0;
+        giocatore.punti = 8; giocatore.vinte = 8; giocatore.perse = 0; giocatore.patte = 0;
         creaStazione(giocatore.calvario, stazione, iMatch); 
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,20).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
-        giocatore.calvario[stazione].vittorie = 5; giocatore.calvario[stazione].partiteFinite = 5;
+        giocatore.calvario[stazione].vittorie = 8; giocatore.calvario[stazione].partiteFinite = 8;
         giocatore.calvario[stazione].vittoriePassaggio = 3;
-        giocatore.userVinte = ['saurosol','saurosol','dairola']; giocatore.userPatte = [];
+        giocatore.userVinte = ['saurosol','saurosol','dairola','dairola']; giocatore.userPatte = [];
         //
         username = 'dairola'; creaGiocatore(username);
         giocatore = giocatori[username];
-        giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 2; giocatore.patte = 0;
+        giocatore.punti = 6; giocatore.vinte = 6; giocatore.perse = 2; giocatore.patte = 0;
         creaStazione(giocatore.calvario, stazione, iMatch); 
-        giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 8;
+        giocatore.calvario[stazione].vittorie = 6; giocatore.calvario[stazione].partiteFinite = 8;
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,20).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
@@ -111,14 +102,70 @@ function elabora() {
         //
         username = 'saurosol';
         giocatore = giocatori[username];
-        giocatore.punti += 2; giocatore.vinte += 2; giocatore.perse += 6; giocatore.patte += 0;
+        giocatore.punti += 4; giocatore.vinte += 4; giocatore.perse += 4; giocatore.patte += 0;
         creaStazione(giocatore.calvario, stazione, iMatch); 
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
         giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,22).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,23).getTime()/1000);
         giocatore.calvario[stazione].vittorie = 2; giocatore.calvario[stazione].partiteFinite = 14;
         giocatore.calvario[stazione].vittoriePassaggio = 3;
         giocatore.userVinte = []; giocatore.userPatte = [];
     
+        //-- STAZIONE 1 - GIRONE 9 - OK
+        iMatch = 109;
+        stazione = 1;
+        
+        username = 'iaiobros'; creaGiocatore(username);
+        giocatore = giocatori[username];
+        giocatore.punti = 8; giocatore.vinte = 8; giocatore.perse = 0; giocatore.patte = 0;
+        creaStazione(giocatore.calvario, stazione, iMatch); 
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,25).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,29).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,05).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,05).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,11).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,29).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,02).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,05).getTime()/1000);
+        giocatore.calvario[stazione].vittorie = 8; giocatore.calvario[stazione].partiteFinite = 8;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
+        giocatore.userVinte = ['cavaliereyedi','cavaliereyedi','napoli67','napoli67','tempiese75','tempiese75']; giocatore.userPatte = [];
+        //
+        username = 'cavaliereyedi'; creaGiocatore(username);
+        giocatore = giocatori[username];
+        giocatore.punti = 4.5; giocatore.vinte = 5; giocatore.perse = 3; giocatore.patte = 1;
+        creaStazione(giocatore.calvario, stazione, iMatch); 
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,28).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,26).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,03).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,05).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,17).getTime()/1000);
+        giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 8;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
+        giocatore.userVinte = ['napoli67','tempiese75']; giocatore.userPatte = ['napoli67'];
+        //
+        username = 'napoli67'; creaGiocatore(username);
+        giocatore = giocatori[username];
+        giocatore.punti = 3.5; giocatore.vinte = 3; giocatore.perse = 4; giocatore.patte = 1;
+        creaStazione(giocatore.calvario, stazione, iMatch); 
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,25).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,07).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,19).getTime()/1000);
+        giocatore.calvario[stazione].vittorie = 3; giocatore.calvario[stazione].partiteFinite = 8;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
+        giocatore.userVinte = ['tempiese75']; giocatore.userPatte = ['cavaliereyedi'];
+        //
+        username = 'tempiese75'; creaGiocatore(username);
+        giocatore = giocatori[username];
+        giocatore.punti = 4; giocatore.vinte = 4; giocatore.perse = 4; giocatore.patte = 0;
+        creaStazione(giocatore.calvario, stazione, iMatch); 
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,9,23).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,14).getTime()/1000);
+        giocatore.calvario[stazione].dataVittorie.push(new Date(2019,10,24).getTime()/1000);
+        giocatore.calvario[stazione].vittorie = 4; giocatore.calvario[stazione].partiteFinite = 8;
+        giocatore.calvario[stazione].vittoriePassaggio = 3;
+        giocatore.userVinte = ['cavaliereyedi','napoli67']; giocatore.userPatte = [];
+        //
     
 
     //Carico i dati di tutti i match
@@ -300,8 +347,6 @@ function calcolaClassificaCalvario()
                 }
             }
             //Se ho non posso raggiungere le tre vittori
-if (username == 'sandro2116')
-console.log('aaa');
             var partiteGirone = 0;  //N. partite da giocare nel girone. 
                                     //Se passo con 3 vittorie il girone è da 5 giocatori, altrimenti da 4
             if (calvario[i].vittoriePassaggio == 3)
@@ -336,7 +381,8 @@ console.log('aaa');
         {
             giocatori[username].stampaCalvario = stampaCalvario;
             //Stampo il giocatore
-            stampaCalvario(username);
+            if (eliminati.indexOf(';' + username + ';') == -1)  //Se bannato non lo stampo
+               stampaCalvario(username);
         }
      }
     
