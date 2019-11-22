@@ -14,6 +14,7 @@ matchs[108] = {"stazione":1, "girone":8, "nome":"il-calvario-stazione-n-1-gruppo
 matchs[109] = {"stazione":1, "girone":9, "nome":"il-calvario-stazione-n-1-gruppo-9", "vittoriePassaggio":3, "daCaricare":false};
 matchs[110] = {"stazione":1, "girone":10, "nome":"il-calvario-stazione-n-1-gruppo-10", "vittoriePassaggio":3, "daCaricare":true};
 matchs[111] = {"stazione":1, "girone":11, "nome":"il-calvario-stazione-n-1-gruppo-11", "vittoriePassaggio":2, "daCaricare":true};
+matchs[112] = {"stazione":1, "girone":12, "nome":"il-calvario-stazione-n-1-gruppo-12", "vittoriePassaggio":2, "daCaricare":true};
 
 
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
@@ -27,6 +28,7 @@ matchs[208] = {"stazione":2, "girone":7, "nome":"il-calvario-stazione-n-2-gruppo
 
 matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
 matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
+matchs[303] = {"stazione":3, "girone":3, "nome":"il-calvario-stazione-n-3-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 
@@ -308,6 +310,8 @@ function calcolaClassificaCalvario()
     //Aggiorno il campo da stampare per ogni stazione e stampo
     for (var username in giocatori)
     {
+        if (username =='paolobarolo')
+           console.log('ok');
         //imposto i valori da stampare
         var calvario = giocatori[username].calvario;
         var ii = 0;
