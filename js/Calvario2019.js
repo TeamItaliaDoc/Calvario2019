@@ -33,8 +33,12 @@ matchs[211] = {"stazione":2, "girone":11, "nome":"il-calvario-stazione-n-2-grupp
 matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
 matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[303] = {"stazione":3, "girone":3, "nome":"il-calvario-stazione-n-3-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
+matchs[304] = {"stazione":3, "girone":4, "nome":"il-calvario-stazione-n-3-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
+matchs[305] = {"stazione":3, "girone":5, "nome":"il-calvario-stazione-n-3-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
+matchs[402] = {"stazione":4, "girone":2, "nome":"il-calvario-stazione-n-4-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
+matchs[403] = {"stazione":4, "girone":3, "nome":"il-calvario-stazione-n-4-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-2-gruppo-5/1/1
 
@@ -318,17 +322,9 @@ function calcolaClassificaCalvario()
         var calvario = giocatori[username].calvario;
         var ii = 0;
         for (var i in calvario) {
-            if (username == 'k527')        {
-                //??????????????????
-            console.log('---------- i: ' + i);       
-            console.log(calvario[i].dataVittorie);       
-            }
-            
             //imposto la data del passaggio
             calvario[i].dataVittorie.sort(mySorterNumeric);
             if (calvario[i].dataVittorie[calvario[i].vittoriePassaggio-1]) {
-if (username == 'k527')       
-console.log('---------- assegno data passaggio');        
                 calvario[i].dataPassaggio = calvario[i].dataVittorie[calvario[i].vittoriePassaggio-1];
             }
             giocatori[username].puntiCalvario = i * 1000000000000 + calvario[i].vittorie * 1000000000 - calvario[i].dataPassaggio;
@@ -345,9 +341,7 @@ console.log('---------- assegno data passaggio');
                  
                     //Se si vuole rimettere progressivo calvario[ii].stampa = 'XXXXX'; 
                     calvario[ii].stampa = '<img class="calvario-img" src="img/wait.png">'
-                    if ((i ==3)   && (username =='k527'))  //???????
-                    console.log('KK');
-                                        //Stampo la data della terza vittoria, non vale per i gironi con bannati
+                    //Stampo la data della terza vittoria, non vale per i gironi con bannati
                     if (calvario[i].dataPassaggio != 6000000000) {
                         var myObj = $.parseJSON('{"date_created":"' + calvario[i].dataPassaggio + '"}'),
                         end_time = new Date(1000*myObj.date_created);
