@@ -1,6 +1,6 @@
 ﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
 var eliminati = [";albertocollobiano;"]
-var calcolaClassificaRun = false;
+var elaboraMatchRun = false;
 var stazioneAttese = [];
 var matchs = [];
 matchs[101] = {"stazione":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
@@ -16,7 +16,7 @@ matchs[110] = {"stazione":1, "girone":10, "nome":"il-calvario-stazione-n-1-grupp
 matchs[111] = {"stazione":1, "girone":11, "nome":"il-calvario-stazione-n-1-gruppo-11", "vittoriePassaggio":2, "daCaricare":true};
 matchs[112] = {"stazione":1, "girone":12, "nome":"il-calvario-stazione-n-1-gruppo-12", "vittoriePassaggio":2, "daCaricare":true};
 matchs[113] = {"stazione":1, "girone":13, "nome":"il-calvario-stazione-n-1-gruppo-13", "vittoriePassaggio":2, "daCaricare":true};
-
+matchs[114] = {"stazione":1, "girone":14, "nome":"il-calvario-stazione-n-1-gruppo-14", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[201] = {"stazione":2, "girone":1, "nome":"il-calvario-stazione-n-2-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
 matchs[202] = {"stazione":2, "girone":2, "nome":"il-calvario-stazione-n-2-gruppo-2-1", "vittoriePassaggio":3, "daCaricare":true};
@@ -30,17 +30,24 @@ matchs[209] = {"stazione":2, "girone":9, "nome":"il-calvario-stazione-n-2-gruppo
 matchs[210] = {"stazione":2, "girone":10, "nome":"il-calvario-stazione-n-2-gruppo-10", "vittoriePassaggio":2, "daCaricare":true};
 matchs[211] = {"stazione":2, "girone":11, "nome":"il-calvario-stazione-n-2-gruppo-11", "vittoriePassaggio":2, "daCaricare":true};
 matchs[212] = {"stazione":2, "girone":12, "nome":"il-calvario-stazione-n-2-gruppo-12", "vittoriePassaggio":2, "daCaricare":true};
+matchs[213] = {"stazione":2, "girone":13, "nome":"il-calvario-stazione-n-2-gruppo-13", "vittoriePassaggio":2, "daCaricare":true};
+matchs[214] = {"stazione":2, "girone":14, "nome":"il-calvario-stazione-n-2-gruppo-14", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[301] = {"stazione":3, "girone":1, "nome":"il-calvario-stazione-n-3-gruppo-1", "vittoriePassaggio":3, "daCaricare":true};
 matchs[302] = {"stazione":3, "girone":2, "nome":"il-calvario-stazione-n-3-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[303] = {"stazione":3, "girone":3, "nome":"il-calvario-stazione-n-3-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 matchs[304] = {"stazione":3, "girone":4, "nome":"il-calvario-stazione-n-3-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
 matchs[305] = {"stazione":3, "girone":5, "nome":"il-calvario-stazione-n-3-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
+matchs[306] = {"stazione":3, "girone":6, "nome":"il-calvario-stazione-n-3-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
+matchs[307] = {"stazione":3, "girone":7, "nome":"il-calvario-stazione-n-3-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 matchs[402] = {"stazione":4, "girone":2, "nome":"il-calvario-stazione-n-4-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[403] = {"stazione":4, "girone":3, "nome":"il-calvario-stazione-n-4-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
+matchs[404] = {"stazione":4, "girone":4, "nome":"il-calvario-stazione-n-4-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
 
+matchs[501] = {"stazione":5, "girone":1, "nome":"il-calvario-stazione-n-5-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
+matchs[502] = {"stazione":5, "girone":2, "nome":"il-calvario-stazione-n-5-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-2-gruppo-5/1/1
 
 function elabora() {
@@ -200,53 +207,8 @@ function caricaMatch(index, url)
             iMatch = i;
         }        
 
-        console.log('CaricaMatch ' + iMatch + ' inizio')
-        //Creo tutti i giocatori per avere anche quelli senza punteggio
-        for (var iPlayer in data.players) {
-            if (! giocatori[data.players[iPlayer].username.toLowerCase()]) {
-                creaGiocatore(data.players[iPlayer].username);
-                console.log('CaricaMatch ' + iMatch + '  creo giocatore: ' + data.players[iPlayer].username)
-            }
-
-            console.log('CaricaMatch ' + iMatch + ' inizio giocatore: ' + data.players[iPlayer].username)
-
-            //Se è il primo torneo della stazione lo creo.
-            //   Lo devo fare qui per avere tutti i giocatori, anche quelli a zero
-            var calvario = giocatori[data.players[iPlayer].username].calvario;
-            var stazione = matchs[iMatch].stazione;
-            if (! calvario[stazione]) {
-                creaStazione(calvario, stazione, iMatch);
-                console.log('CaricaMatch ' + iMatch + ' creo  stazione: ' + stazione)
-            } else {
-                //Se è un nuovo girono azzero il punteggio
-                if (calvario[stazione].girone < matchs[iMatch].girone) {
-                    console.log('CaricaMatch ' + iMatch + ' azzero punteggio')
-                    var gironiGiocati = calvario[stazione].gironiGiocati;
-                   calvario.splice(stazione,1);
-                   creaStazione(calvario, stazione, iMatch);
-                   calvario[stazione].gironiGiocati = gironiGiocati;
-                } 
-            }
-            calvario[stazione].gironiGiocati.push(matchs[iMatch].girone);
-            console.log('CaricaMatch ' + iMatch + ' fine giocatore: ' + data.players[iPlayer].username)
-        }
-
-        //Carico i risultati delle partite
-        for (var i in data.games) {
-
-            //Classifica giocatori
-            //   NB NB DA FARE PER PRIMA COSI' CREA IL GIOCATORE
-            if (data.games[i].end_time) {
-                setPunti(data.games[i].white.username.toLowerCase(), data.games[i].white.result, data.games[i].black.username);
-                setPunti(data.games[i].black.username.toLowerCase(), data.games[i].black.result, data.games[i].white.username);
-                console.log('CaricaMatch ' + iMatch + ' aggiorno punti ' + data.games[i].black.username.toLowerCase() + ' - ' + data.games[i].white.username);
-
-                //Punti Calvario
-                setPuntiCalvario(data.games[i].white.username.toLowerCase(), data.games[i].white.result, matchs[iMatch], data.games[i].end_time)
-                setPuntiCalvario(data.games[i].black.username.toLowerCase(), data.games[i].black.result, matchs[iMatch], data.games[i].end_time)
-            }
-        }
-
+        //Salvo dati match
+        matchs[iMatch].data = data;
 
         matchs[iMatch].daCaricare = false;
         console.log('CaricaMatch ' + iMatch + ' assegno daCaricare FALSO');
@@ -260,13 +222,14 @@ function caricaMatch(index, url)
         console.log('CaricaMatch ' + iMatch + ' CARICATI TUTTI I MATCH');
 
         //controllo di non aver già lanciato fase sucessiva
-        if (calcolaClassificaRun)
+        if (elaboraMatchRun)
             return;  
-        calcolaClassificaRun = true;
+            elaboraMatchRun = true;
 
-        console.log('CaricaMatch ' + iMatch + ' Inizio getAvatar');
-        //Ricerco elo e stampo classifica calvario / giocatori
-        getAvatar();
+        console.log('CaricaMatch ' + iMatch + ' Inizio elaboraMatch');
+
+        //Elaboro i dati salvati
+        elaboraMatch();
     
     }).error(function(jqXhr, textStatus, error) {
         //è andato in errore ricarico i dati
@@ -298,18 +261,79 @@ function caricaMatch(index, url)
                 console.log('ERRORE CaricaMatch ' + index + ' CARICATI TUTTI I MATCH');
 
                 //controllo di non aver già lanciato fase sucessiva
-                if (calcolaClassificaRun)
+                if (elaboraMatchRun)
                     return;  
-                calcolaClassificaRun = true;
+                    elaboraMatchRun = true;
 
                 console.log('ERRORE CaricaMatch ' + index + ' Inizio getAvatar');
-                //Ricerco elo e stampo classifica calvario / giocatori
-                getAvatar();
+                //Elaboro i dati salvati
+                elaboraMatch();
            }
               
         });
 }
 
+function elaboraMatch() {
+    console.log('elaboraMatch inizio')
+
+    for (var iMatch in matchs) {
+        //dati da elaborare
+        if (!matchs[iMatch].data) 
+           continue;
+        var data = matchs[iMatch].data;
+
+        //Creo tutti i giocatori per avere anche quelli senza punteggio
+        for (var iPlayer in data.players) {
+            if (! giocatori[data.players[iPlayer].username.toLowerCase()]) {
+                creaGiocatore(data.players[iPlayer].username);
+                console.log('elaboraMatch  creo giocatore: ' + data.players[iPlayer].username)
+            }
+
+            console.log('elaboraMatch inizio giocatore: ' + data.players[iPlayer].username)
+
+            //Se è il primo torneo della stazione lo creo.
+            //   Lo devo fare qui per avere tutti i giocatori, anche quelli a zero
+            var calvario = giocatori[data.players[iPlayer].username].calvario;
+            var stazione = matchs[iMatch].stazione;
+            if (! calvario[stazione]) {
+                creaStazione(calvario, stazione, iMatch);
+                console.log('elaboraMatch creo  stazione: ' + stazione)
+            } else {
+                //Se è un nuovo girono azzero il punteggio
+                if (calvario[stazione].girone < matchs[iMatch].girone) {
+                    console.log('elaboraMatch azzero punteggio')
+                    var gironiGiocati = calvario[stazione].gironiGiocati;
+                   calvario.splice(stazione,1);
+                   creaStazione(calvario, stazione, iMatch);
+                   calvario[stazione].gironiGiocati = gironiGiocati;
+                } 
+            }
+            calvario[stazione].gironiGiocati.push(matchs[iMatch].girone);
+            console.log('elaboraMatch fine giocatore: ' + data.players[iPlayer].username)
+        }
+
+        //Carico i risultati delle partite
+        for (var i in data.games) {
+
+            //Classifica giocatori
+            //   NB NB DA FARE PER PRIMA COSI' CREA IL GIOCATORE
+            if (data.games[i].end_time) {
+                setPunti(data.games[i].white.username.toLowerCase(), data.games[i].white.result, data.games[i].black.username);
+                setPunti(data.games[i].black.username.toLowerCase(), data.games[i].black.result, data.games[i].white.username);
+                console.log('elaboraMatch aggiorno punti ' + data.games[i].black.username.toLowerCase() + ' - ' + data.games[i].white.username);
+
+                //Punti Calvario
+                setPuntiCalvario(data.games[i].white.username.toLowerCase(), data.games[i].white.result, matchs[iMatch], data.games[i].end_time)
+                setPuntiCalvario(data.games[i].black.username.toLowerCase(), data.games[i].black.result, matchs[iMatch], data.games[i].end_time)
+            }
+        }
+    }
+
+    //Ricerco elo e stampo classifica calvario / giocatori
+    getAvatar();
+
+
+}
 //Salva i punti del calvario
 function setPuntiCalvario(username, risultato, match, dataVittoria) {
 
