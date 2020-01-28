@@ -40,14 +40,21 @@ matchs[304] = {"stazione":3, "girone":4, "nome":"il-calvario-stazione-n-3-gruppo
 matchs[305] = {"stazione":3, "girone":5, "nome":"il-calvario-stazione-n-3-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
 matchs[306] = {"stazione":3, "girone":6, "nome":"il-calvario-stazione-n-3-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
 matchs[307] = {"stazione":3, "girone":7, "nome":"il-calvario-stazione-n-3-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
+matchs[308] = {"stazione":3, "girone":8, "nome":"il-calvario-stazione-n-3-gruppo-8", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[401] = {"stazione":4, "girone":1, "nome":"il-calvario-stazione-n-4-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 matchs[402] = {"stazione":4, "girone":2, "nome":"il-calvario-stazione-n-4-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[403] = {"stazione":4, "girone":3, "nome":"il-calvario-stazione-n-4-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 matchs[404] = {"stazione":4, "girone":4, "nome":"il-calvario-stazione-n-4-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
+matchs[405] = {"stazione":4, "girone":5, "nome":"il-calvario-stazione-n-4-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[501] = {"stazione":5, "girone":1, "nome":"il-calvario-stazione-n-5-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 matchs[502] = {"stazione":5, "girone":2, "nome":"il-calvario-stazione-n-5-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
+matchs[503] = {"stazione":5, "girone":3, "nome":"il-calvario-stazione-n-5-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
+matchs[504] = {"stazione":5, "girone":4, "nome":"il-calvario-stazione-n-5-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
+
+matchs[601] = {"stazione":6, "girone":1, "nome":"il-calvario-stazione-n-6-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
+matchs[602] = {"stazione":6, "girone":2, "nome":"il-calvario-stazione-n-6-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-2-gruppo-5/1/1
 
 function elabora() {
