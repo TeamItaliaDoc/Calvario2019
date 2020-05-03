@@ -187,24 +187,26 @@ function calcolaClassificaGiocatori()
         }
         if (max > -1) 
         {
-            if (oldMax == max && oldSpareggio == maxSpareggio )
-            {
-                nPareggi++;
-            } else {
-                posizione++;
-                posizione += nPareggi;
-                nPareggi = 0;
-                oldMax = max;
-                oldSpareggio = maxSpareggio;
-            }    
-           giocatori[username].posizione = posizione;
-           //Stampo il giocatore
-           
-           if (eliminati.indexOf(';' + username + ';') == -1)  //Se bannato non lo stampo
+            if (eliminati.indexOf(username) == -1) 
+            { //Se bannato non lo stampo
+                if (oldMax == max && oldSpareggio == maxSpareggio )
+                {
+                    nPareggi++;
+                } else {
+                    posizione++;
+                    posizione += nPareggi;
+                    nPareggi = 0;
+                    oldMax = max;
+                    oldSpareggio = maxSpareggio;
+                }    
+               giocatori[username].posizione = posizione;
+               //Stampo il giocatore
                stampaGiocatore(username);
+            } else {
+                giocatori[username].posizione = -1;
+            }
         }
     }
-   
  }
  
 function stampaGiocatore(username)

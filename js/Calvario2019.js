@@ -1,5 +1,5 @@
 ﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
-var eliminati = [";albertocollobiano;"]
+var eliminati = ["albertocollobiano","dairola","lixiansky","alberto_vincenti","simone_filaci","cats-not-knights","golia_il_filisteo","mlamdmar","clafa","deffo2506","savi-xa"]
 var elaboraMatchRun = false;
 var stazioneAttese = [];
 var matchs = [];
@@ -454,7 +454,7 @@ function calcolaClassificaCalvario()
         {
             giocatori[username].stampaCalvario = stampaCalvario;
             //Stampo il giocatore
-            if (eliminati.indexOf(';' + username + ';') == -1)  //Se bannato non lo stampo
+            if (eliminati.indexOf(username) == -1)  //Se bannato non lo stampo
                stampaCalvario(username);
         }
      }
