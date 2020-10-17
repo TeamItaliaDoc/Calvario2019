@@ -1,5 +1,6 @@
 ﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
-var eliminati = ["albertocollobiano","dairola","lixiansky","alberto_vincenti","simone_filaci","cats-not-knights","golia_il_filisteo","mlamdmar","clafa","deffo2506","savi-xa","postrione_furzio", "k527"]
+var eliminati = ["albertocollobiano","dairola","lixiansky","alberto_vincenti","simone_filaci","cats-not-knights","golia_il_filisteo","mlamdmar","clafa","deffo2506","savi-xa","postrione_furzio", "k527",
+"rapace", "marpur", "tempiese75", "saurosol", "carbon", "cats-not-knights"]
 var elaboraMatchRun = false;
 var stazioneAttese = [];
 var matchs = [];
@@ -58,20 +59,33 @@ matchs[501] = {"stazione":5, "girone":1, "nome":"il-calvario-stazione-n-5-gruppo
 matchs[502] = {"stazione":5, "girone":2, "nome":"il-calvario-stazione-n-5-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[503] = {"stazione":5, "girone":3, "nome":"il-calvario-stazione-n-5-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 matchs[504] = {"stazione":5, "girone":4, "nome":"il-calvario-stazione-n-5-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
-matchs[504] = {"stazione":5, "girone":5, "nome":"il-calvario-stazione-n-5-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
-matchs[504] = {"stazione":5, "girone":6, "nome":"il-calvario-stazione-n-5-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
-matchs[504] = {"stazione":5, "girone":7, "nome":"il-calvario-stazione-n-5-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
+matchs[505] = {"stazione":5, "girone":5, "nome":"il-calvario-stazione-n-5-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
+matchs[506] = {"stazione":5, "girone":6, "nome":"il-calvario-stazione-n-5-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
+matchs[507] = {"stazione":5, "girone":7, "nome":"il-calvario-stazione-n-5-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[601] = {"stazione":6, "girone":1, "nome":"il-calvario-stazione-n-6-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 matchs[602] = {"stazione":6, "girone":2, "nome":"il-calvario-stazione-n-6-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[603] = {"stazione":6, "girone":3, "nome":"il-calvario-stazione-n-6-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 matchs[604] = {"stazione":6, "girone":4, "nome":"il-calvario-stazione-n-6-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
-matchs[604] = {"stazione":6, "girone":5, "nome":"il-calvario-stazione-n-6-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
+matchs[605] = {"stazione":6, "girone":5, "nome":"il-calvario-stazione-n-6-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
+matchs[665] = {"stazione":6, "girone":5, "nome":"il-calvario-stazione-n-6-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
+matchs[667] = {"stazione":6, "girone":5, "nome":"il-calvario-stazione-n-6-gruppo-7", "vittoriePassaggio":2, "daCaricare":true};
 
 matchs[701] = {"stazione":7, "girone":1, "nome":"il-calvario-stazione-n-7-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
 matchs[702] = {"stazione":7, "girone":2, "nome":"il-calvario-stazione-n-7-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
 matchs[703] = {"stazione":7, "girone":3, "nome":"il-calvario-stazione-n-7-gruppo-3", "vittoriePassaggio":2, "daCaricare":true};
 matchs[704] = {"stazione":7, "girone":4, "nome":"il-calvario-stazione-n-7-gruppo-4", "vittoriePassaggio":2, "daCaricare":true};
+matchs[705] = {"stazione":7, "girone":4, "nome":"il-calvario-stazione-n-7-gruppo-5", "vittoriePassaggio":2, "daCaricare":true};
+matchs[706] = {"stazione":7, "girone":4, "nome":"il-calvario-stazione-n-7-gruppo-6", "vittoriePassaggio":2, "daCaricare":true};
+
+matchs[801] = {"stazione":8, "girone":1, "nome":"il-calvario-stazione-n-8-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
+matchs[802] = {"stazione":8, "girone":2, "nome":"il-calvario-stazione-n-8-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
+
+matchs[901] = {"stazione":9, "girone":1, "nome":"il-calvario-stazione-n-9-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
+matchs[902] = {"stazione":9, "girone":2, "nome":"il-calvario-stazione-n-9-gruppo-2", "vittoriePassaggio":2, "daCaricare":true};
+
+matchs[1001] = {"stazione":10, "girone":1, "nome":"il-calvario-stazione-n-10-gruppo-1", "vittoriePassaggio":2, "daCaricare":true};
+
 //https://api.chess.com/pub/tournament/il-calvario-stazione-n-2-gruppo-5/1/1
 
 function elabora() {
